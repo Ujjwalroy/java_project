@@ -1,0 +1,98 @@
+EXPERIMENT -2
+AIM: The goal of this project is to design and implement a simple inventory control system for a small video rental store.
+ Define least two classes: a class Video to model a video and a class VideoStore to model theactual store.
+
+SOURCE CODE:
+packagedemopg;
+class Video{
+String title;
+boolean flag =true;
+intaverageuserrating;
+Video(String name){
+title = name;
+}
+voidbeingcheckedout(){
+flag = false;
+}
+voidbeingreturned(){
+flag = true;
+}
+voidreceivingarating(intnum){
+averageuserrating = num;
+}
+public String toString() {
+return "Video [title=" + title + ", flag=" + flag + ", averageuserrating="
++ averageuserrating + "]";
+}
+}
+classVideoStore{
+Video vobj [] = new Video[10];
+int count = 0;
+voidaddVideo(String title){
+vobj[count] = new Video(title);
+count++;
+}
+voidcheckOut(String title){
+for(inti = 0; i<count; i++){
+if(vobj[i].title.equals(title)){
+vobj[i].beingcheckedout();
+break;
+}
+}
+}
+voidreturnVideo(String title ){
+for(inti = 0; i<count; i++){
+if(vobj[i].title.equals(title)){
+vobj[i].beingreturned();
+break;
+}
+}
+}
+voidreceiveRating(String title , intnum){
+for(inti = 0; i<count; i++){
+if(vobj[i].title.equals(title)){
+vobj[i].receivingarating(num);
+break;
+}
+}
+}
+void  listInventory(){
+for(inti = 0; i<count; i++){
+if(vobj[i].flag == true){
+System.out.println(vobj[i]);
+}
+}
+}
+}
+public class VideoStoreLauncher {
+public static void main(String[] args) {
+VideoStorevsobj = new VideoStore();
+vsobj.addVideo("The Matrix");
+vsobj.addVideo("Godfather II");
+vsobj.addVideo("Star Wars Episode IV: A New Hope");
+vsobj.receiveRating("The Matrix", 4);
+vsobj.receiveRating("Godfather II", 3);
+vsobj.receiveRating("Star Wars Episode IV: A New Hope", 5);
+vsobj.listInventory();
+vsobj.checkOut("Godfather II");
+System.out.println("============");
+vsobj.listInventory();
+vsobj.checkOut("Star Wars Episode IV: A New Hope");
+System.out.println("============");
+vsobj.listInventory();
+vsobj.returnVideo("Godfather II");
+System.out.println("============");
+vsobj.listInventory();
+}
+}
+
+
+
+OUTPUT
+
+
+ 
+
+
+
+

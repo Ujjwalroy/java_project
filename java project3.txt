@@ -1,0 +1,296 @@
+EXPERIMENT -3
+AIM: Calculate interest based on the type of the account and the status of the account holder. 
+The rates of interest changes according to the amount (greater than or less than 1 crore ),
+age of account holder(General or Senior citizen) and number of days if 
+the type of account is FD or RD.
+
+
+SOURCE CODE:
+import java.io.IOException;
+import java.util.Scanner;
+abstract class Account
+{
+	double interest_Rate;
+	double amount;
+	abstract double cal_interest();
+
+}
+class MyException extends Exception
+{
+ public MyException(String str)
+ {
+  System.out.println(str);
+ }}
+
+class SB_Account extends Account
+{
+	double interest_Rate;
+	double amount;
+
+double cal_interest()
+{
+	Scanner s=new Scanner(System.in);
+	
+ 	
+	System.out.println("Account type:");
+	String type = s.nextLine();
+
+	if(type=="normal")
+	{
+	  try{
+	  System.out.println("Enter the Average amount in your account:");
+	  amount = s.nextInt();
+	  if(amount<0)
+	  throw new MyException("Invalid Amount, Please enter correct values.");
+	  
+	  double  Interest_gained = amount*0.04;
+	  System.out.println("Interest gained:"+Interest_gained);
+	  }
+	  catch (MyException m) {
+   	  System.out.println(m);
+  				}  
+	}
+	else 
+{ 
+		try{
+	  System.out.println("Enter the Average amount in your account:");
+	  amount = s.nextInt();
+	  if(amount<0)
+	  throw new MyException("Invalid Amount, Please enter correct values.");
+
+	  double Interest_gained = amount*0.06;
+	  System.out.println("Interest gained:"+Interest_gained);
+	  }
+	  catch (MyException m) {
+   	  System.out.println(m);
+  				}
+		
+		}
+
+	return 0;
+}}
+
+class FD_Account extends Account
+{
+	double interest_Rate;
+	double amount;
+	int no_Of_Days,age_Of_ACHolder;
+
+double cal_interest(){
+		Scanner s=new Scanner(System.in);
+	try{
+	System.out.println("Enter the Average amount in your account:"); 
+	amount = s.nextInt();
+	if(amount<0)
+	  throw new MyException("Invalid Amount, Please enter correct values.");
+	System.out.println("Enter the number of Days:"); 
+	no_Of_Days =  s.nextInt();
+	if(no_Of_Days<0)
+	throw new MyException("Invalid Number of Days. Please enter correct values.");
+	System.out.println("Enter your age:"); 
+	age_Of_ACHolder = s.nextInt();
+	if(age_Of_ACHolder<0)
+	throw new MyException("Invalid Age, Please enter correct values.");
+	}
+	catch (MyException m) {
+   	System.out.println(m);
+  				}
+
+
+	if(amount<10000000)
+	{
+	    if(age_Of_ACHolder<60)
+		{
+		    if(no_Of_Days > 7 && no_Of_Days < 14)
+			{System.out.println("Interest gained:"+amount*0.045);}		
+			
+		    if(no_Of_Days > 15 && no_Of_Days < 29)
+			{System.out.println("Interest gained:"+amount*0.047);}		
+			  
+		    if(no_Of_Days > 30 && no_Of_Days < 45)
+			{System.out.println("Interest gained:"+amount*0.055);}		
+			  
+		    if(no_Of_Days > 45 && no_Of_Days < 60)
+			{System.out.println("Interest gained:"+amount*0.07);}		
+			  
+		    if(no_Of_Days > 61 && no_Of_Days < 184)
+			{System.out.println("Interest gained:"+amount*0.075);}		
+			
+		    if(no_Of_Days > 185 && no_Of_Days < 365)
+			{System.out.println("Interest gained:"+amount*0.08);}		
+			      
+	 }
+
+	
+	    if(age_Of_ACHolder>60)
+		{
+		    if(no_Of_Days > 7 && no_Of_Days < 14)
+			{System.out.println("Interest gained:"+amount*0.05);}		
+			
+		    if(no_Of_Days > 15 && no_Of_Days < 29)
+			{System.out.println("Interest gained:"+amount*0.0525);}		
+			  
+		    if(no_Of_Days > 30 && no_Of_Days < 45)
+			{System.out.println("Interest gained:"+amount*0.06);}		
+			  
+		    if(no_Of_Days > 45 && no_Of_Days < 60)
+			{System.out.println("Interest gained:"+amount*0.075);}		
+			  
+		    if(no_Of_Days > 61 && no_Of_Days < 184)
+			{System.out.println("Interest gained:"+amount*0.08);}		
+			
+		    if(no_Of_Days > 185 && no_Of_Days < 365)
+			{System.out.println("Interest gained:"+amount*0.085);}	
+}
+		
+}
+     		if(amount>10000000)
+		  {
+	    
+		    if(no_Of_Days > 7 && no_Of_Days < 14)
+			{System.out.println("Interest gained:"+amount*0.065);}		
+			
+		    if(no_Of_Days > 15 && no_Of_Days < 29)
+			{System.out.println("Interest gained:"+amount*0.0675);}		
+			  
+		    if(no_Of_Days > 30 && no_Of_Days < 45)
+			{System.out.println("Interest gained:"+amount*0.0675);}		
+			  
+		    if(no_Of_Days > 45 && no_Of_Days < 60)
+			{System.out.println("Interest gained:"+amount*0.08);}		
+			  
+		    if(no_Of_Days > 61 && no_Of_Days < 184)
+			{System.out.println("Interest gained:"+amount*0.085);}		
+			
+		    if(no_Of_Days > 185 && no_Of_Days < 365)
+			{System.out.println("Interest gained:"+amount*0.1);}		
+			  	  		    
+			
+}
+
+return 0;
+}}
+
+class RD_Account extends Account
+{
+	double interest_Rate;
+	double amount;
+	int no_Of_months,age_Of_ACHolder;
+
+double cal_interest(){
+		Scanner s=new Scanner(System.in);
+	try{
+	System.out.println("Enter the Average amount in your account:"); 
+	amount = s.nextInt();
+	if(amount<0)
+	  throw new MyException("Invalid Amount, Please enter correct values.");
+	System.out.println("Enter the number of months:"); 
+	no_Of_months =  s.nextInt();
+	if(no_Of_months<0)
+	throw new MyException("Invalid Number of months. Please enter correct values.");
+	System.out.println("Enter your age:"); 
+	age_Of_ACHolder = s.nextInt();
+	if(age_Of_ACHolder<0)
+	throw new MyException("Invalid Age, Please enter correct values.");
+	}
+	catch (MyException m) {
+   	System.out.println(m);
+  				}
+
+
+	    if(age_Of_ACHolder<60)
+		{
+		    if(no_Of_months>=1 && no_Of_months <= 6)
+			{System.out.println("Interest gained:"+amount*0.075);}		
+			
+		    if(no_Of_months>6 && no_Of_months <= 9)
+			{System.out.println("Interest gained:"+amount*0.0775);}		
+			  
+		    if(no_Of_months>9 && no_Of_months <= 12)
+			{System.out.println("Interest gained:"+amount*0.08);}		
+			  
+		    if(no_Of_months>12 && no_Of_months <= 15)
+			{System.out.println("Interest gained:"+amount*0.0825);}		
+			  
+		    if(no_Of_months>=15 && no_Of_months <= 18)
+			{System.out.println("Interest gained:"+amount*0.085);}		
+			
+		    if(no_Of_months>=18 && no_Of_months <= 21)
+			{System.out.println("Interest gained:"+amount*0.0875);}		
+			      
+	  		    
+}
+
+	
+	   if(age_Of_ACHolder>60)
+		{
+		    if(no_Of_months>=1 && no_Of_months <= 6)
+			{System.out.println("Interest gained:"+amount*0.08);}		
+			
+		    if(no_Of_months>6 && no_Of_months <= 9)
+			{System.out.println("Interest gained:"+amount*0.0825);}		
+			  
+		    if(no_Of_months>9 && no_Of_months <= 12)
+			{System.out.println("Interest gained:"+amount*0.085);}		
+			  
+		    if(no_Of_months>12 && no_Of_months <= 15)
+			{System.out.println("Interest gained:"+amount*0.0875);}		
+			  
+		    if(no_Of_months>=15 && no_Of_months <= 18)
+			{System.out.println("Interest gained:"+amount*0.09);}		
+			
+		    if(no_Of_months>=18 && no_Of_months <= 21)
+			{System.out.println("Interest gained:"+amount*0.0925);}		
+			    
+}
+return 0;
+}}
+public class project2
+{
+	public static void main(String []args)
+{
+	int a;
+
+	while(true)
+	{
+	Scanner s=new Scanner(System.in);
+	System.out.println("\n\n");
+	System.out.println("1. Interest Calculator –SB");
+	System.out.println("2. Interest Calculator –FB");
+	System.out.println("3. Interest Calculator –RD");
+	System.out.println("4. Exit");
+	a = s.nextInt();
+	
+	switch (a)
+	{
+	  case 1:
+		
+		Account sb=new SB_Account();
+		sb.cal_interest();
+		break;
+
+	  case 2:
+		
+		Account fd = new  FD_Account();
+		fd.cal_interest();
+		
+		break;
+
+	  case 3:
+		Account rd = new  RD_Account();
+		rd.cal_interest();
+		
+		break;
+	  case 4:
+		System.exit(0); 
+		
+		break;
+	
+}}}}
+
+
+
+
+
+ 
+
